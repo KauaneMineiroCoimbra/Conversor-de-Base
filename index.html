@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Conversor + Tarefas</title>
+</head>
+<body>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+header {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+input, select {
+  padding: 10px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>Aplicativo Conversor </h2>
+</header>
+
+<div class="container">
+
+  <!--  DECIMAL → OUTRAS BASES -->
+  <div class="card">
+    <h3>Converter número normal (Decimal → outras bases)</h3>
+
+    <input type="number" id="decimal" placeholder="Digite um número decimal">
+
+    <button onclick="decimalParaBases()">Converter</button>
+
+    <p>Binário: <span id="binario">---</span></p>
+    <p>Hexadecimal: <span id="hexadecimal">---</span></p>
+  </div>
+
+  <!-- OUTRAS BASES → DECIMAL -->
+  <div class="card">
+    <h3>Converter para número normal (outras bases → Decimal)</h3>
+
+    <input type="text" id="outro" placeholder="Digite binário ou hexadecimal">
+
+    <select id="base">
+      <option value="2">Binário</option>
+      <option value="16">Hexadecimal</option>
+    </select>
+
+    <button onclick="paraDecimal()">Converter</button>
+
+    <p>Decimal: <span id="resultadoDecimal">---</span></p>
+  </div>
+
+  <!-- SOBRE -->
+  <div class="card">
+    <h3>Sobre o Projeto</h3>
+
+    <p>
+      Este aplicativo conversor foi desenvolvido como parte da disciplina
+      <b>Conceitos da Computação</b>, com o objetivo de aplicar na prática
+      conceitos fundamentais como lógica computacional e representação de dados.
+    </p>
+
+    <p>
+      O sistema realiza conversões entre diferentes bases numéricas utilizadas
+      na computação, como decimal, binário e hexadecimal, permitindo compreender
+      como os dados são representados internamente nos computadores.
+    </p>
+
+    <p>
+      Os computadores trabalham exclusivamente com o sistema binário (0 e 1).
+      Já o sistema hexadecimal é amplamente utilizado para representar grandes
+      valores de forma mais compacta.
+    </p>
+
+    <h4>Exemplos:</h4>
+    <ul>
+      <li>10 → 1010 (binário)</li>
+      <li>1101 → 13 (decimal)</li>
+      <li>255 → FF (hexadecimal)</li>
+    </ul>
+
+    <p>
+      O projeto foi desenvolvido de forma totalmente autônoma, desde a lógica
+      de conversão até a implementação, representando um marco importante no
+      aprendizado em programação.
+    </p>
+  </div>
+
+</div>
+
+<script>
+// DECIMAL → OUTRAS BASES
+function decimalParaBases() {
+  let valor = document.getElementById("decimal").value;
+
+  if (valor === "") {
+    alert("Digite um número!");
+    return;
+  }
+
+  let numero = parseInt(valor);
+
+  document.getElementById("binario").innerText = numero.toString(2);
+  document.getElementById("hexadecimal").innerText = numero.toString(16).toUpperCase();
+}
+
+// OUTRAS BASES → DECIMAL
+function paraDecimal() {
+  let valor = document.getElementById("outro").value;
+  let base = parseInt(document.getElementById("base").value);
+
+  let resultado = parseInt(valor, base);
+
+  if (isNaN(resultado)) {
+    document.getElementById("resultadoDecimal").innerText = "Valor inválido!";
+    return;
+  }
+
+  document.getElementById("resultadoDecimal").innerText = resultado;
+}
+</script>
+
+</body>
+</html>
